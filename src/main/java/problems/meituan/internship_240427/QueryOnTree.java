@@ -1,4 +1,4 @@
-package main.java.problems.meituan.internship_0427;
+package main.java.problems.meituan.internship_240427;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ public class QueryOnTree {
     private static final int M = 20;
 
     /**
-     * DFS遍历树 & 逆向并查集 & LCA。
+     * DFS遍历树 & 逆向并查集。
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -23,8 +23,6 @@ public class QueryOnTree {
         int[][] edge = new int[n - 1][2];
         int[] dad = new int[n];
         Set<Integer> leftEdge = new HashSet<>();
-        int[][] jump = new int[n][M]; // jump[i][j]表示i向上跳2^j步的节点编号。
-        int[] depth = new int[n]; // depth[i]表示i节点的深度。
         int[] xor = new int[n]; // xor[i]表示从i到根节点的异或值。
 
         // 初始化数据结构。
@@ -46,7 +44,7 @@ public class QueryOnTree {
         }
 
         // DFS遍历树，初始化jump数组并获得xor值。
-        dfs(0, 0, edges, jump, depth, xor, 0, 1);
+        dfs(0, 0, edges, xor, 0);
 
         // 离线处理。
         int[][] ops = new int[p][3];
@@ -76,7 +74,6 @@ public class QueryOnTree {
                 if(seek(dad, u) != seek(dad, v)){
                     ans.add(-1);
                 } else {
-                    int l = lca(jump, depth, u, v);
                     ans.add(xor[u] ^ xor[v]);
                 }
             }
@@ -88,41 +85,12 @@ public class QueryOnTree {
         }
     }
 
-    private static void dfs(int now, int fa, List<int[]>[] edges, int[][] jump, int[] depth, int[] xor, int x, int d){
-        jump[now][0] = fa;
+    private static void dfs(int now, int fa, List<int[]>[] edges, int[] xor, int x){
         xor[now] = x;
-        depth[now] = d;
-        for(int i = 1; i < jump[now].length; ++ i){
-            jump[now][i] = jump[jump[now][i - 1]][i - 1];
-        }
         for(int[] edge: edges[now]){
             if(edge[0] == fa) continue;
-            dfs(edge[0], now, edges, jump, depth, xor, x ^ edge[1], d + 1);
+            dfs(edge[0], now, edges, xor, x ^ edge[1]);
         }
-    }
-
-    private static int lca(int[][] jump, int[] depth, int x, int y){
-        // 保证x的深度大于等于y。
-        if(depth[x] < depth[y]){
-            int t = x;
-            x = y;
-            y = t;
-        }
-        // x使用二进制跳法跳到与y同一深度。
-        for(int i = M - 1; i >= 0; -- i){
-            if(depth[jump[x][i]] >= depth[y]){
-                x = jump[x][i];
-            }
-        }
-        if(x == y) return x;
-        // x和y同时使用二进制跳法跳到最近公共祖先。
-        for(int i = M - 1; i >= 0; -- i){
-            if(jump[x][i] != jump[y][i]){
-                x = jump[x][i];
-                y = jump[y][i];
-            }
-        }
-        return jump[x][0];
     }
 
     private static void union(int[] dad, int x, int y){

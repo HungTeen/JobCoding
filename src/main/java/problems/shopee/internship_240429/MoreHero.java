@@ -1,6 +1,4 @@
-package main.java.problems.shopee.internship_0429;
-
-import main.java.core.InputGenerator;
+package main.java.problems.shopee.internship_240429;
 
 import java.util.*;
 

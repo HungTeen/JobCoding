@@ -1,8 +1,6 @@
-package main.java.problems.meituan.internship_0427;
+package main.java.problems.meituan.internship_240427;
 
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  * @program: JobCoding
