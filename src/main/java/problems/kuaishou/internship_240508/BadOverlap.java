@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author: PangTeen
  * @create: 2024/5/10 00:17
  **/
-public class STDOverlap {
+public class BadOverlap {
 
     // 使用一个二维数组作为网格来标记所有的矩形区域
     private static final int GRID_SIZE = 10000; // 足够大的网格大小

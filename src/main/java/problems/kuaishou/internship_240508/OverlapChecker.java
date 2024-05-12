@@ -10,7 +10,7 @@ import main.java.core.SolutionChecker;
 public class OverlapChecker {
 
     public static void main(String[] args) {
-        SolutionChecker checker = new SolutionChecker(Overlap.class, STDOverlap.class, ((printStream, random) -> {
+        SolutionChecker checker = new SolutionChecker(BestOverlap.class, BadOverlap.class, ((printStream, random) -> {
             int n = random.nextInt(5);
             printStream.printf("%d\n", n);
             for(int i = 0; i < n; ++ i){

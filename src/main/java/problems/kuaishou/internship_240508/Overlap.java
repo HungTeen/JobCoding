@@ -10,7 +10,7 @@ import java.util.*;
 public class Overlap {
 
     /**
-     * 扫描线 + 线段树。
+     * 扫描线 + 线段树，x方向和y方向各扫描一次。
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
