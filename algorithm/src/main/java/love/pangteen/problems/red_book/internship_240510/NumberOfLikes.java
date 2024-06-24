@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class NumberOfLikes {
 
     /**
-     * 找规律。
+     * 找规律。【和240528的ClickLike题目一样】
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

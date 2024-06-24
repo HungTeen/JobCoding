@@ -48,19 +48,23 @@ public class BestIndexChoice {
 
     private static void dfs(int now, int b, int[] old){
         int[] dp = Arrays.copyOf(old, b + 1);
-        boolean[] vis = new boolean[b + 1];
+        int[] vis = new int[b + 1];
         for(int i = 0; i < groups[now].size(); ++ i){
             int v = groups[now].get(i)[0];
             int c = groups[now].get(i)[1];
             for(int j = b; j >= c; -- j){
                 if(dp[j - c] >= 0) {
-                    dp[j] = Math.max(dp[j], dp[j - c] + v);
-                    ans = Math.max(ans, dp[j]);
-                    vis[j] = true;
+                    int val = dp[j - c] + v;
+                    dp[j] = Math.max(dp[j], val);
+                    vis[j] = Math.max(vis[j], val);
                 }
             }
         }
-        for(int i = 0; i <= b; ++ i) if(! vis[i]) dp[i] = -1;
+        for(int i = 0; i <= b; ++ i) {
+            if(vis[i] == 0) dp[i] = -1;
+            else dp[i] = vis[i];
+            ans = Math.max(ans, dp[i]);
+        }
         for(int i = 0; i < edges[now].size(); ++ i){
             dfs(edges[now].get(i), b, dp);
         }
