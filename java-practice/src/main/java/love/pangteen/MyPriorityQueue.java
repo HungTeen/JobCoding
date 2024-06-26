@@ -1,11 +1,11 @@
 package love.pangteen;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
+ * @see PriorityQueue
  * @program: JobCoding
  * @author: PangTeen
  * @create: 2024/6/25 12:12
@@ -18,7 +18,7 @@ public class MyPriorityQueue<T> {
     private final Comparator<? super T> comparator;
 
     public MyPriorityQueue(Comparator<? super T> comparator){
-        this(4, comparator);
+        this(11, comparator);
     }
 
     public MyPriorityQueue(int capacity, Comparator<? super T> comparator){

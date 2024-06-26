@@ -1,4 +1,4 @@
-package love.pangteen.problems.bytedance.internship_240508;
+package love.pangteen.problems.byte_dance.internship_240508;
 
 import java.util.Arrays;
 import java.util.Scanner;
