@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 public class MyLFUCache<K, V> {
 
-    private final Map<Integer, LinkedList<Node<K, V>>> bins;
+    private final Map<Integer, MyLinkedList<K, V>> bins;
     private final Map<K, Node<K, V>> map;
     private final int capacity;
     private int len;
@@ -47,14 +47,16 @@ public class MyLFUCache<K, V> {
      * 线程不安全。
      */
     public V get(K key){
-        map.compute(key, (k, v) -> {
-            if(v != null){
+        Node<K, V> node = map.compute(key, (k, v) -> {
+            if (v != null) {
                 removeFromBin(v);
-                v.accessCount ++;
+                v.accessCount++;
                 addToBin(v);
+                return v;
             }
             return null;
-        }
+        });
+        return node == null ? null : node.value;
     }
 
     private void dropFromCache(){
@@ -65,9 +67,6 @@ public class MyLFUCache<K, V> {
         });
     }
 
-    /**
-     * O(n)
-     */
     private void removeFromBin(Node<K, V> node){
         bins.computeIfPresent(node.accessCount, (k, v) -> {
             v.remove(node);
@@ -82,21 +81,58 @@ public class MyLFUCache<K, V> {
     private void addToBin(Node<K, V> node){
         bins.compute(node.accessCount, (k, v) -> {
             if(v == null){
-                LinkedList<Node<K, V>> list = new LinkedList<>();
-                list.add(node);
+                MyLinkedList<K, V> list = new MyLinkedList<>();
+                list.addLast(node);
                 return list;
             } else {
-                v.add(node);
+                v.addLast(node);
                 return v;
             }
         });
     }
 
+    public static class MyLinkedList<K, V> {
+
+        private final Node<K, V> head;
+        private final Node<K, V> tail;
+
+        public MyLinkedList() {
+            this.head = new Node<>(null, null);
+            this.tail = new Node<>(null, null);
+            this.head.next = tail;
+            this.tail.pre = head;
+        }
+
+        public void addLast(Node<K, V> node){
+            this.tail.pre.next = node;
+            node.pre = this.tail.pre;
+            node.next = this.tail;
+            this.tail.pre = node;
+        }
+
+        public Node<K, V> removeFirst(){
+            Node<K, V> node = this.head.next;
+            remove(node);
+            return node;
+        }
+
+        public void remove(Node<K, V> node){
+            node.pre.next = node.next;
+            node.next.pre = node.pre;
+            node.next = node.pre = null;
+        }
+
+        public boolean isEmpty(){
+            return this.head.next == this.tail;
+        }
+    }
+
     public static class Node<K, V> {
 
-        private K key;
+        private final K key;
         private V value;
         private int accessCount;
+        private Node<K, V> pre, next;
 
         public Node(K key, V value){
             this.key = key;
@@ -104,8 +140,5 @@ public class MyLFUCache<K, V> {
             this.accessCount = 1;
         }
 
-        public int getAccessCount() {
-            return accessCount;
-        }
     }
 }

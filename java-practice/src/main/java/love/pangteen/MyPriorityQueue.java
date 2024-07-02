@@ -97,15 +97,4 @@ public class MyPriorityQueue<T> {
         queue[y] = tmp;
     }
 
-    public static void main(String[] args) {
-        MyPriorityQueue<Integer> q = new MyPriorityQueue<>(1, Comparator.naturalOrder());
-        q.add(1);
-        q.add(30);
-        q.add(8);
-        q.add(99);
-        q.poll();
-        q.poll();
-        q.add(-1);
-        System.out.println("Finish");
-    }
 }

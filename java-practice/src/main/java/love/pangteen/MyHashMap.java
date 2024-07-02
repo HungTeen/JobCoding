@@ -138,19 +138,4 @@ public class MyHashMap<K, V> {
         }
     }
 
-    public static void main(String[] args) {
-        MyHashMap<String, Integer> map = new MyHashMap<>(2, 1F);
-        map.put("1", 1);
-        System.out.println(map.get("1"));
-        map.put("2", 2);
-        System.out.println(map.get("2"));
-        map.put("3", 3);
-        System.out.println(map.get("3"));
-        map.remove("2");
-        for(int i = 10; i < 15; ++ i){
-            map.put("Test" + i, i);
-        }
-        System.out.println(map.getSize());
-    }
-
 }
