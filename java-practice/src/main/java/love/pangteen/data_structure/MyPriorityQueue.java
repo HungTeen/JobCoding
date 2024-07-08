@@ -1,4 +1,4 @@
-package love.pangteen;
+package love.pangteen.data_structure;
 
 import java.util.Arrays;
 import java.util.Comparator;

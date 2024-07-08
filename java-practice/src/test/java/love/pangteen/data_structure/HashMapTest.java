@@ -1,4 +1,4 @@
-package love.pangteen;
+package love.pangteen.data_structure;
 
 import org.junit.Assert;
 import org.junit.Test;
