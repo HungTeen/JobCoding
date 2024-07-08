@@ -1,7 +1,5 @@
 package love.pangteen.concurrent.problem9;
 
-import love.pangteen.concurrent.problem8.ReaderFirst;
-
 import java.util.concurrent.Semaphore;
 
 /**
@@ -12,16 +10,22 @@ import java.util.concurrent.Semaphore;
 public class WriterFirst {
 
     private static final int READER_RELAX_TIME = 10000;
+    private static final int WRITER_RELAX_TIME = 8000;
+    private static final Semaphore readerMutex = new Semaphore(1);
+    private static final Semaphore writerMutex = new Semaphore(1);
+    private static final Semaphore rwLock = new Semaphore(1);
+    private static final Semaphore queueLock = new Semaphore(1);
     private static int readerCnt = 0;
-    private static final Semaphore mutex = new Semaphore(1);
-    private static final Semaphore readLock = new Semaphore(1);
+    private static int writerCnt = 0;
 
     private static void method1(){
-//        new Thread(new ReaderFirst.Reader(1000)).start();
-//        new Thread(new ReaderFirst.Reader(2000)).start();
-//        new Thread(new ReaderFirst.Reader(3000)).start();
-//        new Thread(new ReaderFirst.Reader(4000)).start();
-//        new Thread(new ReaderFirst.Writer()).start();
+        new Thread(new Reader(1000)).start();
+        new Thread(new Reader(2000)).start();
+        new Thread(new Reader(3000)).start();
+        new Thread(new Reader(4000)).start();
+        new Thread(new Writer(500)).start();
+        new Thread(new Writer(1500)).start();
+        new Thread(new Writer(3000)).start();
     }
 
     public static void main(String[] args) {
@@ -40,23 +44,25 @@ public class WriterFirst {
         public void run() {
             while (true){
                 try {
-                    mutex.acquire();
+                    queueLock.acquire();
+                    readerMutex.acquire();
                     System.out.println(Thread.currentThread().getName() + " try to read.");
                     if(readerCnt == 0){
-                        readLock.acquire();
+                        rwLock.acquire();
                     }
                     ++ readerCnt;
-                    mutex.release();
+                    readerMutex.release();
+                    queueLock.release();
 
                     System.out.println(Thread.currentThread().getName() + " Reading !");
                     Thread.sleep(interval);
 
-                    mutex.acquire();
-                    System.out.println(Thread.currentThread().getName() + " quit.");
+                    readerMutex.acquire();
+                    System.out.println(Thread.currentThread().getName() + " reader quit.");
                     if(-- readerCnt == 0){
-                        readLock.release();
+                        rwLock.release();
                     }
-                    mutex.release();
+                    readerMutex.release();
 
                     Thread.sleep(READER_RELAX_TIME);
                 } catch (InterruptedException e) {
@@ -68,19 +74,40 @@ public class WriterFirst {
 
     private static class Writer implements Runnable {
 
+        private final int interval;
+
+        private Writer(int interval) {
+            this.interval = interval;
+        }
+
         @Override
         public void run() {
             while (true){
                 try {
-                    readLock.acquire();
+
+                    writerMutex.acquire();
+                    System.out.println(Thread.currentThread().getName() + " try to write.");
+                    if(writerCnt == 0){
+                        queueLock.acquire();
+                    }
+                    ++ writerCnt;
+                    writerMutex.release();
+
+                    rwLock.acquire();
 
                     System.out.println("Start writing !");
-                    Thread.sleep(3000);
+                    Thread.sleep(interval);
                     System.out.println("Stop writing !");
 
-                    readLock.release();
+                    writerMutex.acquire();
+                    System.out.println(Thread.currentThread().getName() + " writer quit.");
+                    rwLock.release();
+                    if(-- writerCnt == 0){
+                        queueLock.release();
+                    }
+                    writerMutex.release();
 
-                    Thread.sleep(1000);
+                    Thread.sleep(WRITER_RELAX_TIME);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
