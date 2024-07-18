@@ -9,6 +9,9 @@ import java.util.Scanner;
  **/
 public class MinMoveDistance {
 
+    /**
+     * 没看懂题？
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
