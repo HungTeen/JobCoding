@@ -14,16 +14,23 @@ Buffer出现在了很多知识点中，比较杂乱，在此做一个整理和�
 | 缓冲区满的处理 | 断开连接，删除缓存，重新连接会全量复制 |     环形结构，覆盖起始位置     |
 
 ## MySQL
-* binlog: 
-* redo log: 
-* undo log: 
+* binlog cache: Server 层的缓冲区，缓存即将写入 binlog 文件的日志。
+* redo log buffer: InnoDB 存储引擎的缓冲区，缓存即将写入 redo log 文件的日志，保证事务的持久性。
 * Buffer Pool: Innodb存储引擎设计的缓冲池，缓存索引页、数据页、undo 页等。
 
-|   对比    | replication_buffer  | repl_backlog_buffer |
-|:-------:|:-------------------:|:-------------------:|
-|  出现阶段   |      增量复制&全量复制      |        增量复制         |
-|   个数    |      与从节点一一对应       |      一个主节点只有一个      |
-| 缓冲区满的处理 | 断开连接，删除缓存，重新连接会全量复制 |     环形结构，覆盖起始位置     |
+|  对比  |         redo log buffer         |    binlog cache     |
+|:----:|:-------------------------------:|:-------------------:|
+|  作用  |              故障恢复               |      备份恢复、主从同步      |
+|  个数  |              只有一个               |      每个事务都分配一个      |
+|  格式  |       Buffer Pool某页某处的修改        | Statement/Row/Mixed |
+| 文件处理 |  环形缓冲区，满了会阻塞导致Buffer Pool脏页写回   |     写满了换新文件继续写      |
+| 落盘时机 | 后台线程每1秒/事务提交时（配置文件）/正常关闭/容量超过一半 |       n个事务提交        |
+
+Buffer Pool 脏页写回磁盘时机：
+* Buffer Pool 已满。
+* Checkpoint 到达。
+* MySQL 空闲时（没有进行RDB快照和AOF重写）。
+* redo log buffer 已满。
 
 ## Caffeine
 Caffeine 为了减少锁的竞争，使用 WAL 技术，执行读写操作时，先写到缓冲区，后面异步批量执行。
