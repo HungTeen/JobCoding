@@ -1,6 +1,7 @@
 # 全局总结
 ## Java 1
 ## Java 5
+* 新增 AtomicReference 类。
 ## Java 6
 * synchronized加锁引入了优化，锁从无锁->偏向锁->轻量级锁->重量级锁随着竞争程度逐步升级。
 ## Java 7
