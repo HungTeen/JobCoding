@@ -14,7 +14,7 @@ import java.util.Random;
  **/
 public class SolutionChecker {
 
-    private static final String PREFIX = "src/main/resources/";
+    private static final String PREFIX = "algorithm/src/main/resources/";
     private static final String SUFFIX = ".txt";
     private final Random random;
     private final String inputName;
@@ -103,9 +103,7 @@ public class SolutionChecker {
     }
 
     private String path(String name){
-        StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX).append(name).append(SUFFIX);
-        return sb.toString();
+        return PREFIX + name + SUFFIX;
     }
 
 }
