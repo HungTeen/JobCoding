@@ -21,6 +21,6 @@ public class OverlapChecker {
                 printStream.printf("%d %d %d %d\n", x1, y1, x2, y2);
             }
         }));
-        checker.check(1000);
+        checker.check(1);
     }
 }

@@ -35,6 +35,8 @@ public class SolutionChecker {
         this.inputName = inputName;
         this.currentOutputName = "current_" + outputName;
         this.standardOutputName = "standard_" + outputName;
+        System.out.println("Current Solution is " + currentSolution.getSimpleName());
+        System.out.println("Standard Solution is " + standardSolution.getSimpleName());
         this.inputGenerator = inputGenerator;
     }
 
@@ -62,8 +64,28 @@ public class SolutionChecker {
         runSolution(true);
         System.out.print("开始进行比较 ----> ");
         try {
-            boolean same = Files.mismatch(new File(path(standardOutputName)).toPath(), new File(path(currentOutputName)).toPath()) == -1;
-            System.out.println(same ? "答案正确！" : "答案错误！");
+            File stdFile = new File(path(standardOutputName));
+            File curFile = new File(path(currentOutputName));
+            long pos = Files.mismatch(stdFile.toPath(), curFile.toPath());
+            boolean same = (pos == -1);
+            if(same){
+                System.out.println("答案正确！");
+            } else {
+                System.out.println("答案错误！不同位置在：" + pos);
+                try (InputStream is1 = Files.newInputStream(stdFile.toPath());
+                     InputStream is2 = Files.newInputStream(curFile.toPath())) {
+
+                    // Skip to the mismatch position
+                    is1.skip(pos);
+                    is2.skip(pos);
+
+                    int byte1 = is1.read();
+                    int byte2 = is2.read();
+
+                    System.out.println("Character in std output: " + (char) byte1 + " -> " + byte1);
+                    System.out.println("Character in cur output: " + (char) byte2 + " -> " + byte2);
+                }
+            }
             return same;
         } catch (IOException e) {
             throw new RuntimeException(e);

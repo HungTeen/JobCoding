@@ -32,7 +32,7 @@ public class ClimbRoute {
             List<Integer> points = new ArrayList<>();
             int curScore = 0;
             for(int j = 0; j < n; ++ j){
-                if(((i >> j) & 1) == 0){
+                if(((i >> j) & 1) == 1){
                     points.add(j);
                     curScore += score[j];
                 }
