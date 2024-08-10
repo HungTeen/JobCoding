@@ -8,6 +8,11 @@ Fighting !
 
 ## TODO
 * 项目的技术选型
+* 网卡处理流程
+* 中断执行流程
+* Nacos架构
+* RocketMQ与Kafka
+* 跨域问题
 * 安全点
 * ZGC
 * Proactor 模式
