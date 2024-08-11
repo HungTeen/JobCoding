@@ -8,6 +8,7 @@ Fighting !
 
 ## TODO
 * 项目的技术选型
+* SPI/API
 * 网卡处理流程
 * 中断执行流程
 * Nacos架构
