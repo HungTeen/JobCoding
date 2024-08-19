@@ -29,7 +29,7 @@ Buffer出现在了很多知识点中，比较杂乱，在此做一个整理和�
 Buffer Pool 脏页写回磁盘时机：
 * Buffer Pool 已满。
 * Checkpoint 到达。
-* MySQL 空闲时（没有进行RDB快照和AOF重写）。
+* MySQL 空闲时。
 * redo log buffer 已满。
 
 ## Caffeine
