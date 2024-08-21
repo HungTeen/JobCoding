@@ -1,13 +1,14 @@
 # 全局总结
 ## Java 1
 ## Java 5
-* 新增 AtomicReference 类。
+* 新增 `AtomicReference` 类。
 ## Java 6
 * synchronized加锁引入了优化，锁从无锁->偏向锁->轻量级锁->重量级锁随着竞争程度逐步升级。
 ## Java 7
+* 引入`ForkJoinPool`。
 ## Java 8
-* HashMap中当冲突链长度达到8，并且容量大于64时，会将链表转换成红黑树。
-* 引入性能更好的读写锁StampedLock。
+* `HashMap`中当冲突链长度达到8，并且容量大于64时，会将链表转换成红黑树。
+* 引入性能更好的读写锁`StampedLock`。
 * Parallel Scavenge 和 Parallel Old 成为默认的垃圾回收器。
 ## Java 9
 * G1 成为默认的垃圾回收器。
@@ -29,7 +30,7 @@
 * ZGC 可以正式使用。
 ## Lock
 ### Java 5
-* Condition接口。
+* `Condition` 接口。
 ### Java 6
 * synchronized加锁引入了优化，锁从无锁->偏向锁->轻量级锁->重量级锁随着竞争程度逐步升级。
 
