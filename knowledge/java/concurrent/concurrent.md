@@ -44,3 +44,4 @@
 
 ## 相关文章
 * [ForkJoinPool](https://blog.csdn.net/qq_40592590/article/details/132627368)
+* [核心线程数设置](https://juejin.cn/post/7072281409053786120)
