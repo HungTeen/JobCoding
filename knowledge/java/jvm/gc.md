@@ -1,7 +1,6 @@
 # 垃圾回收
 
 ## GC分类
-
 * 部分收集（Partial GC）
   * 新生代收集（Minor GC / Young GC）
   * 老年代收集（Major GC / Old GC）

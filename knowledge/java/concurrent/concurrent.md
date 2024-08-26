@@ -24,7 +24,7 @@
   * **阻塞队列满之后，如果提交新任务，会开新的线程（core < max）执行新任务，而不是阻塞队列中的任务**。
 * `RejectedExecutionHandler`：拒绝策略，当线程池满了，无法继续执行任务时的处理策略。
   * `DiscardPolicy`：直接丢弃任务。
-  * `DiscardOldestPolicy`：丢弃队列中最老的任务。
+  * `DiscardOldestPolicy`：丢弃队列中“最老”的任务（底层直接调用`queue.poll()`）。
   * `CallerRunsPolicy`：由调用线程执行任务。
   * `AbortPolicy`：抛出异常。
 

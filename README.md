@@ -21,6 +21,7 @@
 * 网卡处理流程
 * 中断执行流程
 * RocketMQ 与 Kafka
+* 设计模式
 * 跨域问题
 * 安全点
 * ZGC
@@ -29,3 +30,4 @@
 ## 主要参考链接
 * [JavaGuide](https://javaguide.cn/)
 * [小林 Coding](https://xiaolincoding.com/)
+* [美团技术团队](https://tech.meituan.com/)
