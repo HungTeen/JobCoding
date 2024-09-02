@@ -1,6 +1,3 @@
-## TCP 状态机
-
-<img src="/knowledge/assets/network/tcp-states.png" width="750">
-
-## 参考链接
-* [TCP 状态机](https://blog.csdn.net/shimazhuge/article/details/5682177)
+## 流量控制
+### 糊涂窗口综合症
+接收方可用窗口很小，并对发送方通告，发送方发送很小的数据包
