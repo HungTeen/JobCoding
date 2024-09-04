@@ -17,7 +17,8 @@
 
 ## TODO
 * 项目的技术选型
-* SPI/API
+* Java 22，各个版本的区别
+* Caffine 原理
 * 网卡处理流程
 * 中断执行流程
 * RocketMQ 与 Kafka
