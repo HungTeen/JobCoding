@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 没有考虑删除缓存。
  * @program: JobCoding
  * @author: PangTeen
  * @create: 2024/7/1 12:30
