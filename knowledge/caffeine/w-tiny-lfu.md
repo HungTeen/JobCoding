@@ -30,6 +30,8 @@ Caffeine 对 CMS 进行了内存上的优化，如下：
 * Protected 满的时候会将最旧的缓存弹出，尝试放入 Probation 中。
 * Probation 中的缓存访问频率达到一定阈值后，会被放入 Protected 中。
 
+<img src="/knowledge/assets/caffeine/w.png" width="750">
+
 ### 放入 Probation 中的判断
 * 尝试放入 Probation 中的缓存为候选者，Probation 中最旧的缓存为受害者。
 * 受害者访问频率高，则淘汰候选者。
@@ -38,3 +40,4 @@ Caffeine 对 CMS 进行了内存上的优化，如下：
 
 ## 参考链接
 * [Caffeine 核心原理](https://www.jianshu.com/p/3c6161e5337b)
+* [Caffeine 淘汰策略](https://juejin.cn/post/6844903670014803981)

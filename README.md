@@ -6,14 +6,15 @@
 * `knowledge`：主要包含面试中的各种知识点，包括 Java、计算机网络、操作系统、数据库等。
 
 ## 秋招战寄
-| Offer 数 | 面试数 | 笔试数 | 投递数 |
-|---------|-----|-----|-----|
-| 0       | 5   | 11  | 40+ |
+| 投递 | 笔试 | 一面 | 二面 | 三面+ | HR 面 | Offer 意向 | 寄  |
+|:--:|:--:|:--:|:--:|:---:|:----:|:--------:|:--:|
+| 63 | 20 | 13 | 6  |  2  |  3   |    0     | 24 |
 
+#### 
 ## 待看
 * [Netty 解决空轮询](https://www.cnblogs.com/crazymakercircle/p/15370299.html)
 * [深度分页](https://javaguide.cn/high-performance/deep-pagination-optimization.html)
-* [序列化方式选型](https://developer.aliyun.com/article/924639)
+* [Redis 线程模型](https://www.cnblogs.com/mrmirror/p/13587311.html)
 
 ## TODO
 * 项目的技术选型
@@ -31,5 +32,6 @@
 ## 主要参考链接
 * [JavaGuide](https://javaguide.cn/)
 * [小林 Coding](https://xiaolincoding.com/)
+* [Java 全栈知识体系](https://www.nenggz.com/)
 * [面试鸭](https://www.mianshiya.com/)
 * [美团技术团队](https://tech.meituan.com/)

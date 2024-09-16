@@ -16,7 +16,7 @@ Buffer出现在了很多知识点中，比较杂乱，在此做一个整理和�
 ## MySQL
 * binlog cache: Server 层的缓冲区，缓存即将写入 binlog 文件的日志。
 * redo log buffer: InnoDB 存储引擎的缓冲区，缓存即将写入 redo log 文件的日志，保证事务的持久性。
-* Buffer Pool: Innodb存储引擎设计的缓冲池，缓存索引页、数据页、undo 页等。
+* Buffer Pool: Innodb 存储引擎设计的缓冲池，缓存索引页、数据页、undo 页等。
 
 |  对比  |         redo log buffer         |    binlog cache     |
 |:----:|:-------------------------------:|:-------------------:|
