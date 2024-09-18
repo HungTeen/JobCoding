@@ -17,17 +17,13 @@
 * [Redis 线程模型](https://www.cnblogs.com/mrmirror/p/13587311.html)
 
 ## TODO
-* 项目的技术选型
 * Java 22，各个版本的区别
-* Caffine 原理
-* 网卡处理流程
+* Raft 算法
 * 中断执行流程
-* RocketMQ 与 Kafka
 * 设计模式
 * 跨域问题
 * 安全点
-* ZGC
-* Redis RedLock算法
+* Redis RedLock 算法
 
 ## 主要参考链接
 * [JavaGuide](https://javaguide.cn/)

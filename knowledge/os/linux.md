@@ -21,6 +21,39 @@
 
 <img src="/knowledge/assets/os/linux-ifconfig-ip.png" width="750">
 
+### 没有互联网连接怎么办？
+* 使用 `ifconfig` 命令检查网络接口是否正常，并查看 ip 地址是否正确。
+* 检查默认路由是否设置正确，使用 `route -n` 或 `ip route` 命令查看路由表。
+* 检查 DNS 是否正常，使用 `cat /etc/resolv.conf` 查看 DNS 配置。
+* 使用 `ping` 命令测试网络连通性。
+* 考虑使用 `systemctl restart network` 重启网络服务。
+
+## 资源相关命令
+### top
+`top` 命令可以实时查看系统资源使用情况，包括 CPU、内存、进程等（还可以看僵尸进程）。
+* `top -p pid` 查看指定进程的资源使用情况。
+### free
+`free` 命令可以查看系统内存使用情况。
+### df
+`df` 命令可以查看磁盘使用情况。
+### iostat
+`iostat` 命令可以查看系统 CPU 和磁盘 IO 使用情况。
+### netstat
+`netstat` 命令可以查看网络连接情况。
+### lsof
+`lsof` 命令可以查看系统打开的文件和网络连接情况。
+* `lsof -i :8080` 查看指定端口的进程打开的文件。
+* `lsof -u user` 查看指定用户打开的文件。
+
+## 权限相关命令
+### chmod
+`chmod` 命令可以修改文件或目录的权限，权限分别是用户、组、其他用户。
+* `chmod 777 file` 将文件的权限设置为 777。
+
+### chown
+`chown` 命令可以修改文件或目录的所有者。
+* `chown user:group file` 将文件的所有者设置为 user，组设置为 group。
+
 # Linux 系统调用
 ## IO 相关
 ### select
