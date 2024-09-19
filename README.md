@@ -18,7 +18,6 @@
 
 ## TODO
 * Java 22，各个版本的区别
-* Raft 算法
 * 中断执行流程
 * 设计模式
 * 跨域问题
@@ -31,3 +30,5 @@
 * [Java 全栈知识体系](https://www.nenggz.com/)
 * [面试鸭](https://www.mianshiya.com/)
 * [美团技术团队](https://tech.meituan.com/)
+* [腾讯技术团队]()
+* [阿里云开发者]()

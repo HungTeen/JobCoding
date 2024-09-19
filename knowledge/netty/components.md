@@ -6,7 +6,7 @@
 * ServerBootstrap 需要设置两个 EventLoopGroup，一个用于处理客户端的连接，一个用于处理客户端的数据读写。
 
 ### Channel
-Channel 是 Netty 对网络操作的抽象类，一旦客户端成功连接服务端就会创建一个 Channel对其绑定。
+Channel 是 Netty 对网络操作的抽象类，一旦客户端成功连接服务端就会创建一个 Channel 对其绑定。
 * NioSocketChannel：基于 NIO 的 TCP 连接，对应 Socket。
 * NioServerSocketChannel：基于 NIO 的 TCP 服务器，对应 ServerSocket。
 
