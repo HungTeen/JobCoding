@@ -25,6 +25,6 @@
 * 每次访问 key 时，根据访问时间和当前时间，更新访问次数。
 * 每次会抽取一定数量的 key，将访问次数最小的 key 删除。
 ### Caffeine 中的 LFU
-[W-Tiny-LFU](/knowledge/caffeine/w-tiny-lfu.md)
+[W-Tiny-LFU](/knowledge/local-cache/caffeine.md)
 
 ## 参考链接
